@@ -2,12 +2,14 @@
 
 import math
 import tkinter as tk
-
 import matplotlib.pyplot as plt
-from numpy import array, cos, pi, sin, linspace, meshgrid
 import sympy as sym
 from matplotlib import mlab
+from matplotlib import axes
+from numpy import array, cos, pi, sin, linspace, meshgrid
 from numpy import ndarray
+import numpy as np
+
 
 rho_cristal = 2.49  # g/cm^3
 rho_poli = 1.18  # g/cm^3 Polimetilmetacrilato
@@ -32,7 +34,7 @@ btn4 = '#C8C8A9'
 
 
 # plots
-def vaso_hexagonal():
+def vaso_hexagonal() -> object:
     # parte superior
     x1, y1, z1 = (-1.5, 2, 2.5)
     x2, y2, z2 = (1.5, 2, 2.5)
@@ -64,12 +66,12 @@ def vaso_hexagonal():
     x12a, y12a, z12a = (2.0, 0, 2.5)
 
     # parte superior
-    box_points: ndarray = array(
+    box_points = np.array(
         [[x1, y1, z1], [x2, y2, z2], [x3, y3, z3], [x4, y4, z4], [x5, y5, z5], [x6, y6, z6], [x7, y7, z7, ],
          [x8, y8, z8], [x9, y9, z9], [x10, y10, z10], [x11, y11, z11], [x12, y12, z12]])
 
-    mlab.points3d(box_points[:, 0], box_points[:, 1], box_points[:, 2],
-                  mode = 'axes', color=(1, 1, 1))
+    mlab.axes(box_points[:, 0], box_points[:, 1], box_points[:, 2],
+                  mode="axes", color=(1, 1, 1))
 
     mlab.mesh([[x1, x2],[x3, x4],[x5, x6],[x7, x8],[x9, x10],[x11, x12]],  # | => x coordinate
 
@@ -78,6 +80,7 @@ def vaso_hexagonal():
                     [[z1, z2],[z3, z4],[z5, z6],[z7, z8],[z9, z10],[z11, z12]],  # | => z coordinate
 
                     color=(0, 0, 0))  # black
+
 
     mlab.mesh([[x1, x3], [x7, x9]],
               [[y1, y3], [y7, y9]],
@@ -112,9 +115,10 @@ def vaso_hexagonal():
     box_points1 = array(
         [[x1a, y1a, z1a], [x2a, y2a, z2a], [x3a, y3a, z3a], [x4a, y4a, z4a], [x5a, y5a, z5a], [x6a, y6a, z6a],
          [x7a, y7a, z7a], [x8a, y8a, z8a], [x9a, y9a, z9a], [x10a, y10a, z10a], [x11a, y11a, z11a], [x12a, y12a, z12a]])
+
     mlab.points3d(box_points1[:, 0], box_points1[:, 1], box_points1[:, 2],
                   mode="axes", color=(1, 1, 1))
-    '''
+
     mlab.mesh([[x1a, x2a],[x3a, x4a],[x5a, x6a],[x7a, x8a],[x9a, x10a],[x11a, x12a]],  # | => x coordinate
 
                     [[y1a, y2a],[y3a, y4a],[y5, y6a],[y7, y8a],[y9, y10a],[y11a, y12a]],  # | => y coordinate
@@ -122,7 +126,7 @@ def vaso_hexagonal():
                     [[z1a, z2a],[z3a, z4a],[z5a, z6a],[z7a, z8a],[z9a, z10a],[z11a, z12a]],  # | => z coordinate
 
                     color=(0, 0, 0))  # black
-    '''
+
     mlab.mesh([[x1a, x3a], [x7a, x9a]],
               [[y1a, y3a], [y7a, y9a]],
               [[z1a, z3a], [z7a, z9a]],
@@ -157,7 +161,7 @@ def vaso_hexagonal():
 
 
 def vaso_hexagonal_ply():
-    # test con modelo ply
+    # test controladoron modelo ply
     vaso = 'Hexagonal.ply'
 
     mlab.pipeline.surface(mlab.pipeline.open(vaso))
@@ -218,7 +222,7 @@ def vaso_alto():
 
 
 def vaso_alto_ply() -> object:
-    vaso = "Alto.ply"
+    vaso = 'Alto.ply',
 
     mlab.pipeline.surface(mlab.pipeline.open(vaso))
 

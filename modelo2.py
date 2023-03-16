@@ -1,10 +1,10 @@
 import tkinter as tk
+
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate as integrate
 import scipy.special as special
-from mayavi import mlab
-from mpl_toolkits import mplot3d
-import matplotlib.pyplot as plt
+from matplotlib import mlab
 
 rho_cristal = 2.49  # g/cm^3
 rho_poli = 1.18  # g/cm^3 Polimetilmetacrilato
@@ -50,12 +50,12 @@ def vaso_hexagonal():
 
     mlab.points3d(box_points[:, 0], box_points[:, 1], box_points[:, 2],
                   mode="axes", color=(1, 1, 1))
-    '''
+
     mlab.mesh([[x1, x2],[x3, x4],[x5, x6],[x7, x8],[x9, x10],[x11, x12]],  # | => x coordinate
                     [[y1, y2],[y3, y4],[y5, y6],[y7, y8],[y9, y10],[y11, y12]],  # | => y coordinate
                     [[z1, z2],[z3, z4],[z5, z6],[z7, z8],[z9, z10],[z11, z12]],  # | => z coordinate
                     color=(0, 0, 0))  # black
-    '''
+
     mlab.mesh([[x1, x3], [x7, x9]],
               [[y1, y3], [y7, y9]],
               [[z1, z3], [z7, z9]],
@@ -132,7 +132,7 @@ def vaso_hexagonal():
 
 def vaso_hexagonal_ply():
     # test con modelo ply
-    vaso = 'Hexagonal.ply'
+    vaso = "Hexagonal.ply"
 
     mlab.pipeline.surface(mlab.pipeline.open(vaso))
 
@@ -229,6 +229,7 @@ def menu():
     print(costo(30))
     while continuation == True:
         selection = int(input("ingesa seleccion >"))
+
         if selection == 1:
             vaso_hexagonal()
             vaso_hexagonal_ply()
@@ -244,7 +245,7 @@ def menu():
 
 def gui():
     root = tk.Tk()
-    root.title('Equipo #6')
+    root.title('Alan Corona Equipo 7')
     # root.iconbitmap()
     root.configure(background='#CBFFD1')
 
@@ -269,4 +270,4 @@ def gui():
     root.mainloop()
 
 
-gui();
+gui()
